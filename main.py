@@ -16,8 +16,16 @@ def add_student():
     marks = []
 
     for i in range(1, 6):
-        mark = int(input(f"Enter marks for subject {i}: "))
-        marks.append(mark)
+        while True:
+            try:
+                mark = int(input(f"Enter marks for subject {i} (0-100): "))
+                if 0 <= mark <= 100:
+                    marks.append(mark)
+                    break
+                else:
+                    print("Marks must be between 0 and 100.")
+            except ValueError:
+                print("Please enter a valid number.")
 
     total = sum(marks)
     percentage = total / 5
@@ -27,6 +35,7 @@ def add_student():
         file.write(f"{name},{total},{percentage},{grade}\n")
 
     print("\nStudent record added successfully!\n")
+
 
 
 def view_students():
