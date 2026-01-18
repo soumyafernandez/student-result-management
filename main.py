@@ -52,7 +52,8 @@ def view_students():
 while True:
     print("\n1. Add Student")
     print("2. View Students")
-    print("3. Exit")
+    print("3. Search Student")
+    print("4. Exit")
 
     choice = input("Enter your choice: ")
 
@@ -61,7 +62,30 @@ while True:
     elif choice == "2":
         view_students()
     elif choice == "3":
+	search_student()
+    elif choice == "4":
         print("Exiting program...")
         break
-    else:
-        print("Invalid choice. Try again.")
+    else: print("Invalid choice. Try again.")
+
+def search_student():
+	search_name = input("Enter student name to search: ").lower()
+	found = False
+
+	try:
+		with open("students.txt", "r") as file:
+			for line in file:
+				name, total, percentage, grade = line.strip().split(",")
+				if name.lower() == search_name:
+					print("\n--- Student Found ---")
+					print(f"Name: {name}")
+					print(f"Total: {total}")
+					print(f"Percentage: {percentage}%")
+					print(f"Grade: {grade}")
+					found = True
+					break
+	except FileNotFoundError:
+		print("No records found.")
+
+	if not found:
+		print("Student not found.")
