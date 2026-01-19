@@ -22,3 +22,5 @@ A simple console-based Python application to manage student results using file h
 - CSV or database storage
 - Object-Oriented version
 - GUI or web application
+
+new
